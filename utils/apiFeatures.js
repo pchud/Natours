@@ -1,5 +1,7 @@
 class APIFeatures {
   constructor(query, queryString) {
+    console.log(queryString);
+
     this.query = query;
     this.queryString = queryString;
   }
@@ -19,7 +21,7 @@ class APIFeatures {
   }
 
   sort() {
-    if (this.queryString) {
+    if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(',').join(' ');
       this.query = this.query.sort(sortBy);
     } else {

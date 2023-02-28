@@ -18,6 +18,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     photo: req.body.photo,
     passwordChangedAt: req.body.passwordChangedAt,
     role: req.body.role,
+    passwordResetExpires: req.body.passwordResetExpires,
+    passwordResetToken: req.body.passwordResetToken,
   });
 
   const token = signToken(newUser._id);
@@ -115,7 +117,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 2) Generate random reset token
   const resetToken = user.createPasswordResetToken();
-  await user.save();
+  await user.save({ validateBeforeSave: false });
 
   // 3) Send it to user's email
 });

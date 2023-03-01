@@ -15,7 +15,10 @@ exports.getAllUsers = catchAsync(async (req, res) => {
   });
 });
 
-exports.getUser = (req, res) => {
+exports.getUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  console.log(user);
+
   res.status(500).json({
     status: 'error',
     message: 'This route is not yet defined!',

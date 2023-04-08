@@ -1,5 +1,4 @@
 const Tour = require('../models/tourModel');
-const Review = require('../models/reviewModel');
 const catchAsync = require('../utils/catchAsync');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -22,12 +21,10 @@ exports.getTour = catchAsync(async (req, res) => {
     path: 'reviews',
     fields: 'review rating user',
   });
-  const reviews = await Review.find({ tour: tour._id });
   // 2) Build template
   // 3) Render template using data from 1)
   res.status(200).render('tour', {
     title: tour.name,
     tour,
-    reviews,
   });
 });

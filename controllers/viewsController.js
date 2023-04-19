@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -23,8 +24,9 @@ exports.getTour = catchAsync(async (req, res) => {
 });
 
 exports.getLoginForm = catchAsync(async (req, res) => {
+  const user = await User.findById('63ffab7b6cea31aa84a91ba6');
   res.status(200).render('login', {
     title: 'Log into your account',
-    user: 'test',
+    // user,
   });
 });
